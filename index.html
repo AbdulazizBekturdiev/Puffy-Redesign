@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puffy Lux Mattress – Updated Header</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #2a2f47;
+    --cream: #f4e3cc;
+    --muted: #a29fb2;
+    --border-subtle: rgba(255,255,255,0.1);
+    --border-mid: rgba(255,255,255,0.24);
+    --card-border: #44485d;
+    --white: #ffffff;
+    --font: 'Inter', sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    font-family: var(--font);
+    background: #f0ece8;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ─── NAVBAR ─── */
+  .navbar {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(180deg, #202020 0%, #010101 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+  }
+  .navbar-logo svg {
+    height: 28px;
+    width: auto;
+    color: #ffffff;
+  }
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .navbar-nav a {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(213, 210, 204, 1);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+    padding: 0 1rem;
+  }
+  .navbar-nav a:hover { color: #E8BC62; opacity: 1; }
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .navbar-right a {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: rgba(213, 210, 204, 1);
+    text-decoration: none;
+    padding: 0 1rem;
+    transition: color 0.2s;
+  }
+  .navbar-right a:hover { color: #E8BC62; opacity: 1; }
+
+  .navbar-nav a,
+  .navbar-right a {
+    position: relative;
+  }
+  .navbar-nav a::after,
+  .navbar-right a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #E8BC62;
+    transition: width 0.3s ease;
+  }
+  .navbar-nav a:hover::after,
+  .navbar-right a:hover::after {
+    width: 100%;
+  }
+  .cart-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: rgba(213, 210, 204, 1);
+    height: 28px;
+  }
+  .cart-btn svg {
+    width: 24px;
+    height: 24px;
+    color: rgba(213, 210, 204, 1);
+  }
+  .cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    width: 15px;
+    height: 15px;
+    background: rgba(213, 210, 204, 1);
+    border-radius: 50%;
+    font-size: 8px;
+    color: #010101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  /* ─── BODY LAYOUT ─── */
+  .page-body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ─── LEFT: IMAGE PANEL ─── */
+  .image-panel {
+    width: 75vw;
+    min-width: 75vw;
+    height: calc(100vh - 60px);
+    position: fixed;
+    left: 0;
+    top: 60px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .main-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .main-image.active {
+    opacity: 1;
+  }
+
+  /* Award badge */
+  .award-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .award-badge img,
+  .award-badge svg {
+    height: 120px;
+    width: auto;
+  }
+
+  /* Play button */
+  .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+  }
+  .play-btn:hover {
+    background: rgba(0,0,0,0.6);
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+  .play-btn svg { width: 24px; height: 24px; fill: white; margin-left: 3px; }
+
+  /* Thumbnail strip */
+  .thumbnails {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: border-color 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  .thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    transition: opacity 0.2s;
+  }
+  .thumb.active { 
+    border-color: white; 
+  }
+  .thumb.active::before {
+    opacity: 0;
+  }
+  .thumb:hover { 
+    border-color: rgba(255,255,255,0.9); 
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ─── RIGHT: INFO PANEL ─── */
+  .info-panel {
+    width: 25vw;
+    min-width: 25vw;
+    height: calc(100vh - 60px);
+    position: fixed;
+    right: 0;
+    top: 60px;
+    background: var(--navy);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.1) transparent;
+  }
+  .info-panel::-webkit-scrollbar { width: 4px; }
+  .info-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+  /* Title */
+  .title-section { display: flex; flex-direction: column; gap: 10px; }
+  .title-row { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    flex-wrap: wrap; 
+  }
+  .product-name {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 300;
+    color: #ffffff;
+    margin: 0;
+  }
+  .product-name .lux-word {
+    font-weight: 500;
+  }
+  .hybrid-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border-top: 1px solid #F4E3CC;
+    border-bottom: 1px solid #F4E3CC;
+    padding: 2px 0;
+  }
+  .hybrid-badge span {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 0.8px;
+  }
+  .hybrid-badge .info-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+
+  .stars-row { display: flex; align-items: center; gap: 10px; }
+  .stars { display: flex; gap: 2px; }
+  .star {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+  .review-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cream);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+  }
+
+  /* Section labels */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .section-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cream);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    background: none; border: none;
+  }
+
+  /* Features */
+  .features-section { display: flex; flex-direction: column; gap: 12px; }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+  }
+  .feature-icon img {
+    width: 32px;
+    height: 32px;
+    display: block;
+  }
+  .feature-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  /* Options */
+  .options-section { display: flex; flex-direction: column; gap: 0; }
+  .upgrade-cards {
+    display: flex;
+    gap: 14px;
+    position: relative;
+    margin-top: 10px;
+  }
+  .upgrade-card {
+    flex: 1;
+    height: 150px;
+    border-radius: 12px;
+    border: 1.5px solid var(--card-border);
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .upgrade-card.selected {
+    border-color: var(--cream);
+    border-width: 1.5px;
+    padding: 10px;
+  }
+  .upgrade-card-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+  .upgrade-card-header .price-tag {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .check-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .check-icon-img { width: 24px; height: 24px; display: block; }
+  .radio-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .radio-icon-img { width: 24px; height: 24px; display: block; }
+  .upgrade-mattress-img {
+    width: 90%;
+    height: 50px;
+    object-fit: contain;
+    filter: brightness(0.9);
+  }
+  .upgrade-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .upgrade-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .mini-badge {
+    border-top: 0.5px solid var(--cream);
+    border-bottom: 0.5px solid var(--cream);
+    padding: 1px 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.5px;
+  }
+  .premium-tag {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    background: var(--cream);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  /* Size dropdown */
+  .size-section { display: flex; flex-direction: column; gap: 0; }
+  .dropdown-btn {
+    width: 100%;
+    height: 48px;
+    border: 1.5px solid var(--border-mid);
+    border-radius: 12px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: border-color 0.2s;
+  }
+  .dropdown-btn:hover { border-color: rgba(255,255,255,0.4); }
+  .dropdown-size-name {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    text-align: left;
+  }
+  .dropdown-dims {
+    font-size: 14px;
+    color: var(--muted);
+    margin-right: 10px;
+  }
+  .dropdown-arrow svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; }
+
+  /* Price */
+  .price-section {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .price-main {
+    padding: 20px 24px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+  }
+  .price-amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+  .price-promo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+  }
+  .price-promo .promo-code { font-weight: 500; }
+  .price-promo .price-info-icon {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    flex-shrink: 0;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  .price-financing {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .price-financing span {
+    font-size: 13px;
+    color: #a0a2a8;
+  }
+  .price-financing .affirm-logo {
+    height: 14px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .price-financing .qualify-link {
+    font-size: 13px;
+    color: #F4E3CC;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin-left: 4px;
+  }
+
+  /* CTA */
+  .cta-block { display: flex; flex-direction: column; gap: 0; }
+  .cta-section { display: flex; flex-direction: column; gap: 12px; }
+  .cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .cta-text p:first-child {
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    text-align: center;
+  }
+  .cta-text p:last-child {
+    font-size: 14px;
+    line-height: 20px;
+    color: #A29FB2;
+    text-align: center;
+  }
+  .btn-primary {
+    width: 100%;
+    height: 48px;
+    background: var(--cream);
+    color: var(--navy);
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    letter-spacing: 0.2px;
+  }
+  .btn-primary:hover { background: #f0d5b0; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  /* Add-ons */
+  .addons-section { display: flex; flex-direction: column; gap: 0; }
+  .addon-cards {
+    display: flex;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .addon-card {
+    flex: 1;
+    border: 1.5px solid var(--card-border);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    min-height: 100px;
+  }
+  .addon-img-row { display: flex; gap: 4px; align-items: center; height: 40px; }
+  .addon-img {
+    width: auto;
+    object-fit: contain;
+  }
+  .addon-img--pillow { height: 32px; }
+  .addon-img--mask { height: 40px; }
+  .addon-name {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--white);
+    text-align: center;
+  }
+  .addon-check {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+  }
+  .addon-check-icon { width: 24px; height: 24px; display: block; }
+
+  /* Additional info */
+  .additional-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+  }
+  .addl-item { display: flex; align-items: center; gap: 12px; }
+  .addl-icon {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+  .addl-icon img.addl-icon-img { width: 32px; height: 32px; display: block; }
+  .addl-info-icon {
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    flex-shrink: 0;
+    display: block;
+  }
+  .addl-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    flex: 1;
+    line-height: 1.4;
+  }
+  .addl-text .highlight { color: var(--cream); font-weight: 600; }
+
+  /* Support */
+  .support-section { display: flex; flex-direction: column; gap: 12px; }
+  .support-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .support-heading p:first-child {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    text-align: center;
+    margin: 0;
+    color: var(--white);
+  }
+  .support-heading p:last-child {
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    margin: 0;
+    color: var(--muted);
+  }
+  .support-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-call {
+    width: 100%;
+    height: 48px;
+    background: var(--cream);
+    color: var(--navy);
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  }
+  .btn-call:hover { background: #f0d5b0; }
+  .btn-call-icon { width: 24px; height: 24px; display: block; }
+  .or-divider {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .btn-chat {
+    width: 100%;
+    height: 48px;
+    background: transparent;
+    color: var(--cream);
+    border: 2px solid var(--cream);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  }
+  .btn-chat:hover { background: #F4E3CC; color: var(--navy); }
+  .btn-chat-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .btn-chat-icon path {
+    stroke: #F4E3CC;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.5s ease;
+  }
+  .btn-chat:hover .btn-chat-icon path { stroke: #2A2F47; }
+
+  /* Divider */
+  .section-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    width: 100%;
+  }
+
+  /* Mattress images */
+  .mattress-img {
+    width: 90%;
+    height: 46px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+
+  /* Dropdown select */
+  .size-select-wrapper {
+    position: relative;
+    margin-top: 10px;
+  }
+  .size-select-btn {
+    width: 100%;
+    height: 48px;
+    background: transparent;
+    border: 1.5px solid var(--border-mid);
+    border-radius: 12px;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 0 40px 0 14px;
+    cursor: pointer;
+    font-family: var(--font);
+    transition: border-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .size-select-btn:focus { outline: none; border-color: rgba(255,255,255,0.5); }
+  .size-select-btn .size-name {
+    color: #ffffff;
+    flex: 1;
+    text-align: left;
+  }
+  .size-select-btn .size-dims {
+    color: #A29FB2;
+    margin-right: 8px;
+  }
+  .size-select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+  }
+  .size-select-wrapper.open .size-select-arrow {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .size-select-arrow svg { width: 18px; height: 18px; stroke: var(--muted); fill: none; stroke-width: 2; }
+  .size-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 10;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1.5px solid var(--border-mid);
+    padding: 8px;
+    opacity: 0;
+    transform: translateY(16px);
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+  }
+  .size-select-wrapper.open .size-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+  .size-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 8px;
+  }
+  .size-option:hover {
+    background: rgba(0,0,0,0.05);
+  }
+  .size-option .size-name {
+    color: #333333;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .size-option .size-dims {
+    color: #A29FB2;
+    font-size: 15px;
+  }
+  .size-option.active {
+    background: rgba(244,227,204,0.1);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="navbar-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 149 36" style="height:28px;width:auto;color:#ffffff;"><path fill="currentColor" fill-rule="evenodd" d="M141.98 32.23a25.5 25.5 0 0 1-7.2-2.36c-5.79-3.37-10.95-5.36-20.86-1.07-8.56 3.71-17.07 3.12-22.75-.64-3.14-2.07-4.63-4.82-4.97-7.6a7.65 7.65 0 0 1 2.04-6c3.77-4.33 10.32-2.28 10.32-2.28l.49-1.57c.08-.27 2.51-6.8 8.8-6.52 6.55.3 8.87 7.99 8.87 7.99s2.04-.86 4.62-.73c2.25.1 4.91 1 7 3.61 4.27 5.32 1 11.15 1 11.15s.19.17.73-.44a11.2 11.2 0 0 0 1.64-2.85A11.02 11.02 0 0 0 120.08 7.4l-.7.07C118.06 4.98 115.1.33 108.04.01c-6.62-.3-10.84 4.55-12.4 8-2.17-.42-6.45-.31-10.23 3.48a11.94 11.94 0 0 0-3.37 9.07c.18 4.4 2.49 8.21 6.84 11.1a23.65 23.65 0 0 0 12.81 3.8c4.38 0 9.06-.84 13.88-2.82 9.79-4 12.78-2.24 16.95-.34 3.28 1.5 6.27 2.22 9.1 1.92 3.87-.41 6.81-2.38 6.81-2.38s-2.8.82-6.45.39ZM5.48 13.18h5.33c1.44 0 2.47-.31 3.09-.94.67-.57 1-1.56 1-2.96 0-1.2-.3-2.16-.93-2.88a4.22 4.22 0 0 0-2.85-.94H5.48v7.72Zm0 4.82v6.92a2.65 2.65 0 0 1-2.64 2.66H0V3.6c0-.77.27-1.44.81-1.98S2.01.79 2.78.79h9.04c2.83 0 4.94.73 6.33 2.18 1.44 1.46 2.16 3.61 2.16 6.47 0 2.7-.7 4.83-2.08 6.38-1.4 1.46-3.4 2.18-6.03 2.18H5.48ZM39.84 7.88v10.85c0 3.72-.9 5.96-2.8 7.12-1.92 1.16-4 1.73-6.28 1.73-2.22-.1-4.25-.73-6.08-1.89s-2.8-3.34-2.8-6.96V7.88h5.42v11.95c0 1.26.35 2.18 1.08 2.76a4 4 0 0 0 5 0c.74-.58 1.12-1.5 1.12-2.76v-9.27c0-.73.24-1.36.73-1.89a2.47 2.47 0 0 1 1.9-.78h2.71ZM57.6.79c-2.12 0-3.64.44-4.57 1.32-.98.93-1.47 2.33-1.47 4.2v21.27h5.27v-15.6h.78a2.5 2.5 0 0 0 1.77-.74c.51-.5.78-1.13.78-1.9V8.16h-3.34v-1.4c0-.62.13-1.03.4-1.24.3-.21.82-.31 1.54-.31h1.4V.79H57.6Zm4.24 33.74 2.97-4.26h1.49a3.7 3.7 0 0 0 2.46-.74c.6-.5.72-1.27.36-2.36L61.84 7.88h6.02l4.23 13.33 3.68-11.47c.31-1.24 1.15-1.86 2.5-1.86h3.76l-7.98 22.23c-.63 1.7-1.41 2.91-2.36 3.63-.94.62-2.48.94-4.61.94h-5.36l.12-.15ZM47.44.79c-2.12 0-3.63.44-4.57 1.32-.97.93-1.46 2.33-1.46 4.2v21.27h5.27v-15.6h.77a2.5 2.5 0 0 0 1.78-.74c.5-.5.77-1.13.77-1.9V8.16h-3.33v-1.4c0-.62.13-1.03.39-1.24.3-.21.82-.31 1.54-.31H50V.79h-2.56Z" clip-rule="evenodd"></path></svg>
+  </div>
+  <ul class="navbar-nav">
+    <li><a href="#">Mattresses</a></li>
+    <li><a href="#">Smart Beds</a></li>
+    <li><a href="#">Bed Frames & More</a></li>
+    <li><a href="#">Bedding & More</a></li>
+  </ul>
+  <div class="navbar-right">
+    <a href="#">Reviews</a>
+    <a href="#">Puffy vs</a>
+    <a href="#">Support</a>
+    <a href="#">Stores</a>
+    <button class="cart-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 28 28" role="img" aria-label="Cart" style="color:rgba(213,210,204,1);"><g fill="currentColor"><path d="M12.48 15.667a.73.73 0 0 0 0 1.458h5.833a.73.73 0 0 0 0-1.458z"></path><path fill-rule="evenodd" d="M4.437 4.552a.73.73 0 1 0-1.415.354l1.022 4.09.952 3.97c.405 1.69.723 3.018 1.101 4.05.388 1.06.863 1.882 1.626 2.512q.099.082.201.159c.791.595 1.701.865 2.822.995 1.092.127 2.458.127 4.194.127h.577c1.502 0 2.685 0 3.637-.096.976-.099 1.779-.303 2.501-.756q.516-.322.95-.749c.608-.597.995-1.33 1.318-2.256.316-.904.591-2.054.941-3.514l.02-.085c.212-.88.386-1.607.453-2.195.07-.61.041-1.191-.263-1.722a2.7 2.7 0 0 0-.484-.613c-.445-.42-1.003-.583-1.613-.658-.588-.071-1.334-.071-2.24-.071H5.322zm1.966 8.03-.726-3.03H20.69c.965 0 1.621.001 2.11.061.477.058.672.16.79.27q.13.123.219.28c.08.139.134.352.08.83-.057.489-.209 1.128-.433 2.066-.362 1.508-.621 2.586-.91 3.412-.284.813-.575 1.316-.963 1.697q-.32.315-.701.553c-.461.289-1.018.455-1.874.541-.871.088-1.98.089-3.53.089h-.491c-1.793 0-3.075-.001-4.073-.117-.98-.114-1.606-.331-2.113-.713q-.075-.057-.149-.117c-.489-.404-.846-.963-1.185-1.889-.346-.943-.646-2.19-1.064-3.933" clip-rule="evenodd"></path><path d="M12.94 23.15a1.023 1.023 0 1 1-2.047 0 1.023 1.023 0 0 1 2.047 0M19.08 23.15a1.023 1.023 0 1 1-2.047 0 1.023 1.023 0 0 1 2.047 0"></path></g></svg>
+        <span class="cart-badge">0</span>
+      </button>
+  </div>
+</nav>
+
+<!-- PAGE BODY -->
+<div class="page-body">
+
+  <!-- LEFT: IMAGE -->
+  <div class="image-panel">
+
+    <!-- Hero images (cross-fade) -->
+    <img class="main-image active" src="./assets/image_1.jpg" alt="Puffy Lux front view">
+    <img class="main-image" src="./assets/image_2.jpg" alt="Puffy Lux top view">
+    <img class="main-image" src="./assets/image_3.jpg" alt="Puffy Lux side view">
+
+    <!-- Award badge (top-center) -->
+    <div class="award-badge">
+      <img src="./assets/award.svg" alt="Award badge">
+    </div>
+
+    <!-- Play button -->
+    <button class="play-btn">
+      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    </button>
+
+    <!-- Thumbnails -->
+    <div class="thumbnails">
+      <div class="thumb active" onclick="switchImage(0)">
+        <img src="./assets/image_1.jpg" alt="View 1">
+      </div>
+      <div class="thumb" onclick="switchImage(1)">
+        <img src="./assets/image_2.jpg" alt="View 2">
+      </div>
+      <div class="thumb" onclick="switchImage(2)">
+        <img src="./assets/image_3.jpg" alt="View 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: INFO PANEL -->
+  <div class="info-panel">
+
+    <!-- Title -->
+    <div class="title-section">
+      <div class="title-row">
+        <h1 class="product-name">Puffy <span class="lux-word">Lux</span> Mattress</h1>
+        <div class="hybrid-badge">
+          <span>HYBRID</span>
+          <img src="./assets/info.svg" alt="" class="info-icon" aria-hidden="true">
+        </div>
+      </div>
+      <div class="stars-row">
+        <div class="stars">
+          <img class="star" src="./assets/star.svg" alt="Star rating">
+          <img class="star" src="./assets/star.svg" alt="Star rating">
+          <img class="star" src="./assets/star.svg" alt="Star rating">
+          <img class="star" src="./assets/star.svg" alt="Star rating">
+          <img class="star" src="./assets/star.svg" alt="Star rating">
+        </div>
+        <a class="review-link">Rated 5 stars by 12,500+ sleepers</a>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features-section">
+      <div class="section-header">
+        <span class="section-label">Key Features</span>
+        <button class="section-link">See All Features</button>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <img src="./assets/cooling.svg" alt="Cooling feature icon">
+        </div>
+        <span class="feature-text">Precision Cooling Cloud™ Comfort</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">
+          <img src="./assets/sleep.svg" alt="Sleep feature icon">
+        </div>
+        <span class="feature-text">Gel-infused layer dissipates heat for deeper sleep</span>
+      </div>
+    </div>
+
+    <!-- Options -->
+    <div class="options-section">
+      <div class="section-header">
+        <span class="section-label">Available Upgrades</span>
+        <button class="section-link">Compare</button>
+      </div>
+      <div class="upgrade-cards">
+        <!-- Card 1: Selected -->
+        <div class="upgrade-card selected" onclick="selectUpgrade(0)">
+          <div class="upgrade-card-header">
+            <div class="check-icon">
+              <img src="./assets/check.svg" alt="" class="check-icon-img">
+            </div>
+          </div>
+          <img src="./assets/lux.png" alt="Puffy Lux" class="mattress-img">
+          <div class="upgrade-card-footer">
+            <span class="upgrade-name">Puffy Lux</span>
+            <span class="mini-badge">HYBRID</span>
+          </div>
+        </div>
+        <!-- Card 2: Upgrade -->
+        <div class="upgrade-card" onclick="selectUpgrade(1)" style="position:relative;">
+          <div class="premium-tag">Premium Choice</div>
+          <div class="upgrade-card-header">
+            <span class="price-tag">+ $340</span>
+            <div class="radio-icon">
+              <img src="./assets/radio-icon.svg" alt="" class="radio-icon-img">
+            </div>
+          </div>
+          <img src="./assets/royal.png" alt="Puffy Royal" class="mattress-img">
+          <div class="upgrade-card-footer">
+            <span class="upgrade-name">Puffy Royal</span>
+            <span class="mini-badge">HYBRID</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Size -->
+    <div class="size-section">
+      <div class="section-header">
+        <span class="section-label">Choose Your Size</span>
+        <button class="section-link">Size Guide</button>
+      </div>
+      <div class="size-select-wrapper">
+        <button class="size-select-btn" onclick="toggleSizeDropdown()">
+          <span class="size-name">Queen</span>
+          <span class="size-dims">60" × 80"</span>
+          <div class="size-select-arrow">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="size-dropdown" id="sizeDropdown">
+          <div class="size-option" onclick="selectSize(event, 'twin', 'Twin', '38" × 75"')">
+            <span class="size-name">Twin</span>
+            <span class="size-dims">38" × 75"</span>
+          </div>
+          <div class="size-option" onclick="selectSize(event, 'twin-xl', 'Twin XL', '38" × 80"')">
+            <span class="size-name">Twin XL</span>
+            <span class="size-dims">38" × 80"</span>
+          </div>
+          <div class="size-option" onclick="selectSize(event, 'full', 'Full', '54" × 75"')">
+            <span class="size-name">Full</span>
+            <span class="size-dims">54" × 75"</span>
+          </div>
+          <div class="size-option active" onclick="selectSize(event, 'queen', 'Queen', '60" × 80"')">
+            <span class="size-name">Queen</span>
+            <span class="size-dims">60" × 80"</span>
+          </div>
+          <div class="size-option" onclick="selectSize(event, 'king', 'King', '76" × 80"')">
+            <span class="size-name">King</span>
+            <span class="size-dims">76" × 80"</span>
+          </div>
+          <div class="size-option" onclick="selectSize(event, 'cal-king', 'Cal King', '72" × 84"')">
+            <span class="size-name">Cal King</span>
+            <span class="size-dims">72" × 84"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price -->
+    <div class="price-section">
+      <div class="price-main">
+        <div class="price-amount">$749</div>
+        <div class="price-promo">
+          <span>with code <span class="promo-code">PRESIDENT</span></span>
+          <img src="./assets/info.svg" alt="" class="price-info-icon" aria-hidden="true">
+        </div>
+      </div>
+      <div class="price-financing">
+        <span>Starting at $47/mo or 0% APR with </span>
+        <img src="./assets/affirm.png" alt="Affirm" class="affirm-logo">
+        <button class="qualify-link">See if you qualify</button>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <div class="cta-section">
+        <div class="cta-text">
+          <p>Order today and get <strong>FREE MATTRESS UPGRADE</strong></p>
+          <p>Same price. More Luxury</p>
+        </div>
+        <button class="btn-primary">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Add-ons -->
+    <div class="addons-section">
+      <div class="section-header" style="margin-bottom:0;">
+        <span class="section-label">Included Complimentary Sleep Add-Ons</span>
+      </div>
+      <div class="addon-cards">
+        <div class="addon-card">
+          <div class="addon-img-row">
+            <img src="./assets/pillow.png" alt="Pillow" class="addon-img addon-img--pillow">
+            <img src="./assets/pillow.png" alt="Pillow" class="addon-img addon-img--pillow">
+          </div>
+          <span class="addon-name">2 Signature Memory<br>Foam Pillows</span>
+          <div class="addon-check">
+            <img src="./assets/check.svg" alt="" class="addon-check-icon">
+          </div>
+        </div>
+        <div class="addon-card">
+          <div class="addon-img-row">
+            <img src="./assets/mask.png" alt="Sleep Mask" class="addon-img addon-img--mask">
+          </div>
+          <span class="addon-name">Signature<br>Sleep Mask</span>
+          <div class="addon-check">
+            <img src="./assets/check.svg" alt="" class="addon-check-icon">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional info -->
+    <div class="additional-info-section">
+      <div class="addl-item">
+        <div class="addl-icon">
+          <img src="./assets/money-back.svg" alt="" class="addl-icon-img">
+        </div>
+        <span class="addl-text">100% money-back guarantee</span>
+        <img src="./assets/info.svg" alt="" class="addl-info-icon" aria-hidden="true">
+      </div>
+      <div class="addl-item">
+        <div class="addl-icon">
+          <img src="./assets/delivery.svg" alt="" class="addl-icon-img">
+        </div>
+        <span class="addl-text">Order <span class="highlight">today</span> for delivery by <span class="highlight">Feb 26</span> – <span class="highlight">Mar 3</span>.</span>
+      </div>
+    </div>
+
+    <!-- Support -->
+    <div class="support-section">
+      <div class="support-heading">
+        <p>Need help ordering? Call now.</p>
+        <p>Talk 1-on-1 with our support specialist.</p>
+      </div>
+      <div class="support-actions">
+        <button class="btn-call">
+          <img src="./assets/call.svg" alt="" class="btn-call-icon">
+          Call Us Now
+        </button>
+        <div class="or-divider">Or</div>
+        <button class="btn-chat">
+          <svg class="btn-chat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16.7016 9.12382H7.2984M13.656 11.4608H7.2984M19.0947 4.00006H4.9053C3.8523 4.00006 3 4.86366 3 5.92689V14.1112C3 15.1744 3.8532 16.0362 4.9053 16.0362H5.9493V20.0001L9.6429 16.0362H19.0947C20.1477 16.0362 21 15.1744 21 14.1103V5.92599C21.0017 5.41703 20.8019 4.92824 20.4446 4.56709C20.0873 4.20593 19.6018 4.00197 19.0947 4.00006Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Chat with Us
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /info-panel -->
+</div><!-- /page-body -->
+
+<script>
+  function switchImage(idx) {
+    const images = document.querySelectorAll('.image-panel .main-image');
+    const thumbs = document.querySelectorAll('.thumb');
+    images.forEach((img, i) => img.classList.toggle('active', i === idx));
+    thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  }
+
+  function selectUpgrade(idx) {
+    const cards = document.querySelectorAll('.upgrade-card');
+    cards.forEach((c, i) => {
+      c.classList.toggle('selected', i === idx);
+      const headerEl = c.querySelector('.upgrade-card-header');
+      // swap check/radio
+      const existing = c.querySelector('.check-icon, .radio-icon');
+      if (existing) existing.remove();
+      const el = document.createElement('div');
+      if (i === idx) {
+        el.className = 'check-icon';
+        el.innerHTML = '<img src="./assets/check.svg" alt="" class="check-icon-img">';
+      } else {
+        el.className = 'radio-icon';
+        el.innerHTML = '<img src="./assets/radio-icon.svg" alt="" class="radio-icon-img">';
+      }
+      headerEl.appendChild(el);
+    });
+  }
+
+  function toggleSizeDropdown() {
+    const wrapper = document.querySelector('.size-select-wrapper');
+    wrapper.classList.toggle('open');
+  }
+
+  function selectSize(ev, value, name, dims) {
+    const btn = document.querySelector('.size-select-btn');
+    const nameSpan = btn.querySelector('.size-name');
+    const dimsSpan = btn.querySelector('.size-dims');
+    
+    nameSpan.textContent = name;
+    dimsSpan.textContent = dims;
+    
+    // Update active state on the clicked option
+    document.querySelectorAll('.size-option').forEach(opt => {
+      opt.classList.remove('active');
+    });
+    if (ev && ev.currentTarget) {
+      ev.currentTarget.classList.add('active');
+    }
+    
+    // Close dropdown
+    document.querySelector('.size-select-wrapper').classList.remove('open');
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(event) {
+    const wrapper = document.querySelector('.size-select-wrapper');
+    if (!wrapper.contains(event.target)) {
+      wrapper.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>
